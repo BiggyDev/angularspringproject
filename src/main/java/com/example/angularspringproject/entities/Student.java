@@ -17,9 +17,11 @@ public class Student implements Serializable {
     private String pseudo;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private StudyDomain studyDomain;
+    @Enumerated(EnumType.STRING)
     private StudyCountry studyCountry;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Paris")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="Europe/Paris")
     private LocalDateTime birthdate;
     @ManyToMany
     @JoinTable(name = "student_to_friends")

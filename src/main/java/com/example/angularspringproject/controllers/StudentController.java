@@ -1,6 +1,7 @@
 package com.example.angularspringproject.controllers;
 
 import com.example.angularspringproject.entities.Student;
+import com.example.angularspringproject.repositories.AdvancedStudentRepository;
 import com.example.angularspringproject.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private AdvancedStudentRepository advancedStudentRepository;
 
     // get all
     @RequestMapping(value = "", produces = "application/json")
@@ -24,6 +27,12 @@ public class StudentController {
     @RequestMapping(value = "/{id}", produces = "application/json")
     public Student getById(@PathVariable(value = "id") Integer id){
         return studentRepository.getOne(id);
+    }
+
+    // get one by email
+    @RequestMapping(value = "/email/{email}", produces = "application/json")
+    public Student getByEmail(@PathVariable(value = "email") String email){
+        return advancedStudentRepository.getByEmail(email);
     }
 
     // add one
