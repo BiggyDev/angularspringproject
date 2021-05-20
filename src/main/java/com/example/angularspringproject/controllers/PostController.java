@@ -15,7 +15,7 @@ public class PostController {
     private PostRepository postRespository;
 
     // get all
-    @RequestMapping(value = "", produces = "application/json")
+    @RequestMapping(value = "/", produces = "application/json")
     public List<Post> getAll(){
         return postRespository.findAll();
     }

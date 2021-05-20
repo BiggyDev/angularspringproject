@@ -18,7 +18,7 @@ public class StudentController {
     private AdvancedStudentRepository advancedStudentRepository;
 
     // get all
-    @RequestMapping(value = "", produces = "application/json")
+    @RequestMapping(value = "/", produces = "application/json")
     public List<Student> getAll(){
         return studentRepository.findAll();
     }
