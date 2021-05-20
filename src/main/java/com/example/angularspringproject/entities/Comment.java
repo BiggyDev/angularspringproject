@@ -1,18 +1,17 @@
 package com.example.angularspringproject.entities;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Entity
-@Table(name= "posts")
-public class Post implements Serializable {
+@Table(name= "comments")
+public class Comment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idpost")
+    @Column(name = "idcomment")
     private int id;
     private String content;
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="Europe/Paris")
@@ -21,18 +20,14 @@ public class Post implements Serializable {
     @JoinColumn(name = "studentfk")
     private Student student;
 
-    @OneToMany
-    @JoinColumn(name = "postfk")
-    private List<Comment> comments;
+    public Comment() {
+    }
 
-    public Post() {}
-
-    public Post(int id, String content, LocalDateTime date, Student student, List<Comment> comments) {
+    public Comment(int id, String content, LocalDateTime date, Student student) {
         this.id = id;
         this.content = content;
         this.date = date;
         this.student = student;
-        this.comments = comments;
     }
 
     public int getId() {
@@ -67,22 +62,13 @@ public class Post implements Serializable {
         this.student = student;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
     @Override
     public String toString() {
-        return "Post{" +
+        return "Comment{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", date=" + date +
                 ", student=" + student +
-                ", comments=" + comments +
                 '}';
     }
 }
