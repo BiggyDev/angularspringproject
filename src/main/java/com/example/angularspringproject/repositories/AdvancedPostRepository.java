@@ -15,11 +15,11 @@ public class AdvancedPostRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Post> getByAuthor(int idStudent) {
+    public List<Post> getByAuthor(int id) {
         List<Post> res = null;
         try {
-            Query query = em.createQuery("SELECT p FROM Post AS p WHERE p.student = :student");
-            query.setParameter("student", idStudent);
+            Query query = em.createQuery("SELECT p FROM Post AS p WHERE p.student.id = :id");
+            query.setParameter("id", id);
             res = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
