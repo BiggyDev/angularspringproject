@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,15 +23,14 @@ public class Student implements Serializable {
     @Enumerated(EnumType.STRING)
     private StudyCountry studyCountry;
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="Europe/Paris")
-    private LocalDateTime birthdate;
+    private Date birthdate;
     @ManyToMany
     @JoinTable(name = "student_to_friends")
     private List<Student> friends;
 
     public Student() {}
 
-    public Student(int id, String pseudo, String email, String password, StudyDomain studyDomain, StudyCountry studyCountry, LocalDateTime birthdate, List<Student> friends) {
-        this.id = id;
+    public Student( String pseudo, String email, String password, StudyDomain studyDomain, StudyCountry studyCountry, Date birthdate, List<Student> friends) {
         this.pseudo = pseudo;
         this.email = email;
         this.password = password;
@@ -39,6 +39,7 @@ public class Student implements Serializable {
         this.birthdate = birthdate;
         this.friends = friends;
     }
+
 
     public int getId() {
         return id;
@@ -88,11 +89,11 @@ public class Student implements Serializable {
         this.studyCountry = studyCountry;
     }
 
-    public LocalDateTime getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(LocalDateTime birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
